@@ -7,7 +7,6 @@ export const Layout = ({ children }: any) => {
     <Box minHeight="100vh" backgroundColor="#0D2840">
       <Header />
       {children}
-      <Footer />
     </Box>
   );
 };
