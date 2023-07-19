@@ -4,19 +4,33 @@ import { Conta } from "./pages/Conta/Conta";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Layout } from "./components/Layout";
 import { ContaInfo } from "./pages/ContaInfo/ContaInfo";
+import { createContext, AppContextProvider, Children } from "react";
+
+interface IAppContext {
+  user: string;
+}
+
+ export const AppContext = createContext({} as IAppContext);
+
+const AppContextProvider = ({ children }: any) => {
+  const user = "ana";
+  return <AppContextProvider value={user}>{children}</AppContextProvider>;
+};
 
 function App() {
   return (
     <BrowserRouter>
-      <ChakraProvider>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/conta/:id" element={<Conta />} />
-            <Route path="/infoconta" element={<ContaInfo />} />
-          </Routes>
-        </Layout>
-      </ChakraProvider>
+      <AppContextProvider>
+        <ChakraProvider>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/conta/:id" element={<Conta />} />
+              <Route path="/infoconta" element={<ContaInfo />} />
+            </Routes>
+          </Layout>
+        </ChakraProvider>
+      </AppContextProvider>
     </BrowserRouter>
   );
 }
