@@ -1,17 +1,23 @@
-import { ChakraProvider, Box } from "@chakra-ui/react";
-import { LoginCard } from "./components/LoginCard";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "./pages/Home/Home";
+import { Conta } from "./pages/Conta/Conta";
+import { ChakraProvider } from "@chakra-ui/react";
 import { Layout } from "./components/Layout";
-import { useState } from "react";
+import { ContaInfo } from "./pages/ContaInfo/ContaInfo";
 
 function App() {
   return (
-    <ChakraProvider>
-      <Layout>
-        <Box padding='25px'>
-          <LoginCard />
-        </Box>
-      </Layout>
-    </ChakraProvider>
+    <BrowserRouter>
+      <ChakraProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/conta/:id" element={<Conta />} />
+            <Route path="/infoconta" element={<ContaInfo />} />
+          </Routes>
+        </Layout>
+      </ChakraProvider>
+    </BrowserRouter>
   );
 }
 
