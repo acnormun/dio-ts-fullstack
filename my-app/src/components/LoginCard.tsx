@@ -1,11 +1,27 @@
 import { AbsoluteCenter, Box, Button, Center, Input } from "@chakra-ui/react"
 import { login } from "../services/login"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { DButton } from "./DButton/DButton"
+import { api } from "../api"
+
+interface UserData {
+  email: string, 
+  password: string,
+  name: string
+}
 
 export const LoginCard = () => {
   const [email, setEmail] = useState('')
-  console.log('email: ', email);
+  const [userData, setUserData] = useState<null | UserData>()
+
+  useEffect(() => {
+    const getData = async () => {
+      const data: any = await api
+      setUserData(data)
+    }
+
+    getData()
+  })
   
     return (
 
