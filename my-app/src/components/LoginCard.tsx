@@ -27,6 +27,7 @@ export const LoginCard = () => {
 
         <AbsoluteCenter>
           <Box backgroundColor="#ffff" borderRadius="25px" padding="25px">
+            {userData === null || userData === undefined ?  <h1>Loading ...</h1> : <h1>Informações carregadas</h1>}
             <Center paddingBottom={5}>
               <h1>Faça Login</h1>
             </Center>
