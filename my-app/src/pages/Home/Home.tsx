@@ -1,10 +1,11 @@
 import { Box, Center, Input } from "@chakra-ui/react";
 import { LoginCard } from "../../components/LoginCard/LoginCard";
 import { DButton } from "../../components/DButton/DButton";
-import { MouseEventHandler, useContext, useState } from "react";
+import {useContext, useState } from "react";
 import { login } from "../../services/login";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../components/Context/AppContext";
+import { changeLocalStorage } from "../../services/storage";
 
 export const Home = () => {
   const [email, setEmail] = useState("");
@@ -17,6 +18,7 @@ export const Home = () => {
       alert("Usuário não encontrado");
     }
     setIsLoggedIn(true);
+    changeLocalStorage({login: true})
     navigate("/conta/1");
   };
 
